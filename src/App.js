@@ -20,7 +20,7 @@ import columns from "./constants";
 import data from "./data/history.json";
 import { generateResults, sortAscending } from "./helperFns";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -28,6 +28,31 @@ const useStyles = makeStyles(() => ({
   },
   heading: {
     whiteSpace: "nowrap",
+    [breakpoints.down("sm")]: {
+      whiteSpace: "break-spaces",
+    },
+    [breakpoints.up("md")]: {
+      whiteSpace: "nowrap",
+    },
+    [breakpoints.up("lg")]: {
+      whiteSpace: "nowrap",
+    },
+  },
+  yearControlText: {
+    whiteSpace: "nowrap",
+    paddingRight: 20,
+  },
+  yearControl: {
+    [breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+    [breakpoints.up("md")]: {
+      flexDirection: "row",
+    },
+    [breakpoints.up("lg")]: {
+      flexDirection: "row",
+    },
+    flexDirection: "row",
   },
 }));
 
@@ -119,7 +144,16 @@ function App() {
           alignSelf="flex-start"
           alignContent="flex-start"
         >
-          <Box width="80%" mb={3} mt={10}>
+          <Box
+            width="80%"
+            mb={3}
+            mt={10}
+            display="flex"
+            className={classes.yearControl}
+          >
+            <Typography variant="h6" className={classes.yearControlText}>
+              Select Year range:
+            </Typography>
             <Grid
               container
               spacing={2}
@@ -128,9 +162,6 @@ function App() {
               mb={3}
               mt={10}
             >
-              <Grid item>
-                <Typography variant="h6">Select Year range:</Typography>
-              </Grid>
               <Grid item>{sliderRange[0]}</Grid>
               <Grid item xs>
                 <Slider
