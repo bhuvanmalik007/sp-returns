@@ -1,58 +1,28 @@
-import AppBar from "@material-ui/core/AppBar";
-import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
-import Slider from "@material-ui/core/Slider";
+import React, { useState } from "react";
 import {
   makeStyles,
   createMuiTheme,
   ThemeProvider,
 } from "@material-ui/core/styles";
-import Switch from "@material-ui/core/Switch";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import NightsStayIcon from "@material-ui/icons/NightsStay";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import React, { useState } from "react";
-
-import Emoji from "./components/Emoji";
 import ReturnsTable from "./components/ReturnsTable";
 import columns from "./constants";
 import data from "./data/history.json";
 import { generateResults, sortAscending } from "./helperFns";
+import Header from "./components/Header";
+import SliderComponent from "./components/SliderComponent";
+import BodyBox from "./components/BodyBox";
+import SliderAreaBox from "./components/SliderAreaBox";
 
-const useStyles = makeStyles(({ breakpoints }) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
     height: "100%",
   },
-  heading: {
-    whiteSpace: "nowrap",
-    [breakpoints.down("sm")]: {
-      whiteSpace: "break-spaces",
-    },
-    [breakpoints.up("md")]: {
-      whiteSpace: "nowrap",
-    },
-    [breakpoints.up("lg")]: {
-      whiteSpace: "nowrap",
-    },
-  },
   yearControlText: {
     whiteSpace: "nowrap",
     paddingRight: 20,
-  },
-  yearControl: {
-    [breakpoints.down("sm")]: {
-      flexDirection: "column",
-    },
-    [breakpoints.up("md")]: {
-      flexDirection: "row",
-    },
-    [breakpoints.up("lg")]: {
-      flexDirection: "row",
-    },
-    flexDirection: "row",
   },
 }));
 
@@ -105,82 +75,21 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.root}>
-        <AppBar position="fixed" color="default" variant="outlined">
-          <Toolbar>
-            <Typography variant="h6" className={classes.heading}>
-              S&P 500 Total Returns by Year <Emoji symbol="💹" />
-            </Typography>
-            <Grid
-              component="label"
-              container
-              alignItems="center"
-              spacing={1}
-              justify="flex-end"
-            >
-              <Grid item>
-                <WbSunnyIcon />
-              </Grid>
-              <Grid item>
-                <Switch
-                  checked={darkMode}
-                  onChange={(event, value) => setDarkMode(value)}
-                  name="mode"
-                />
-              </Grid>
-              <Grid item>
-                <NightsStayIcon />
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </AppBar>
-        <Box
-          display="flex"
-          flexDirection="column"
-          width="100%"
-          height="90%"
-          alignItems="center"
-          mt={6}
-          flexGrow={1}
-          alignSelf="flex-start"
-          alignContent="flex-start"
-        >
-          <Box
-            width="80%"
-            mb={3}
-            mt={10}
-            display="flex"
-            className={classes.yearControl}
-          >
+        <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+        <BodyBox>
+          <SliderAreaBox>
             <Typography variant="h6" className={classes.yearControlText}>
               Select Year range:
             </Typography>
-            <Grid
-              container
-              spacing={2}
-              alignItems="center"
-              width="80%"
-              mb={3}
-              mt={10}
-            >
-              <Grid item>{sliderRange[0]}</Grid>
-              <Grid item xs>
-                <Slider
-                  value={sliderRange}
-                  onChange={handleSliderChange}
-                  valueLabelDisplay="auto"
-                  aria-labelledby="range-slider"
-                  getAriaValueText={(value) => value}
-                  step={1}
-                  min={sliderMin}
-                  max={sliderMax}
-                />
-              </Grid>
-              <Grid item>{sliderRange[1]}</Grid>
-            </Grid>
-          </Box>
-
+            <SliderComponent
+              sliderRange={sliderRange}
+              handleSliderChange={handleSliderChange}
+              sliderMin={sliderMin}
+              sliderMax={sliderMax}
+            />
+          </SliderAreaBox>
           <ReturnsTable headerArray={columns} tableResults={tableResults} />
-        </Box>
+        </BodyBox>
       </div>
     </ThemeProvider>
   );

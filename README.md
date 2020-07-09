@@ -9,6 +9,7 @@
  - Flexbox for styling.
  - yarn for dev dependencies.
  - CSS in JS.
+ - Continuous Deployment on Netlify from Git repository.
 
 ## List of commands to run locally
 
