@@ -11,7 +11,7 @@ import ReturnsTable from "./components/ReturnsTable";
 import { generateResults, sortAscending } from "./helperFns";
 import columns from "./constants";
 
-const useStyles = makeStyles(({ mixins, spacing, transitions, zIndex }) => ({
+const useStyles = makeStyles(({ transitions }) => ({
   root: {
     display: "flex",
     height: "100%",
@@ -20,6 +20,7 @@ const useStyles = makeStyles(({ mixins, spacing, transitions, zIndex }) => ({
     transition: transitions.create(["margin", "width"], {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.leavingScreen,
+      // display: "flex",
     }),
     // zIndex: zIndex.drawer + 1,
   },
@@ -45,17 +46,15 @@ function App() {
       <HideOnScroll>
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6" noWrap>
-              S&P 500 Total Returns
-            </Typography>
+            <Typography variant="h6">S&P 500 Total Returns</Typography>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
       <Box
         display="flex"
         flexDirection="column"
-        width="100%"
-        height="100%"
+        width="90%"
+        height="80%"
         alignItems="center"
         m={10}
         p={1}
@@ -63,18 +62,20 @@ function App() {
         alignSelf="flex-start"
         alignContent="flex-start"
       >
-        <Typography variant="h5">Filter S&P 500 Returns By Year</Typography>
-        <Slider
-          value={sliderRange}
-          onChange={handleSliderChange}
-          valueLabelDisplay="on"
-          aria-labelledby="range-slider"
-          getAriaValueText={(value) => value}
-          step={1}
-          min={sliderMin}
-          max={sliderMax}
-          // marks
-        />
+        {/* <Typography variant="h5">Filter S&P 500 Returns By Year</Typography> */}
+        <Box m={5} display="flex" width="80%">
+          <Slider
+            value={sliderRange}
+            onChange={handleSliderChange}
+            valueLabelDisplay="on"
+            aria-labelledby="range-slider"
+            getAriaValueText={(value) => value}
+            step={1}
+            min={sliderMin}
+            max={sliderMax}
+            // marks
+          />
+        </Box>
         <ReturnsTable headerArray={columns} tableResults={tableResults} />
       </Box>
     </div>
