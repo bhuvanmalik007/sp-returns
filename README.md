@@ -16,3 +16,4 @@
  -  **Change directory to the cloned repo.**
  -  `yarn install` to install all dependencies.
  -  `yarn start` to run in developer mode.
+ -  `yarn build` to build app for production.

@@ -21,23 +21,20 @@ const useStyles = makeStyles(({ transitions }) => ({
     transition: transitions.create(["margin", "width"], {
       easing: transitions.easing.easeInOut,
       duration: transitions.duration.leavingScreen,
-      // display: "flex",
     }),
-    // zIndex: zIndex.drawer + 1,
   },
 }));
 
 function App() {
+  // State
   const sortedSPReturns = sortAscending(data, "year");
   const classes = useStyles();
   const sliderMin = sortedSPReturns[0].year;
   const sliderMax = sortedSPReturns[sortedSPReturns.length - 1].year;
   const [sliderRange, setSliderRange] = useState([sliderMin, sliderMax]);
-  const initTableResults = generateResults(sortedSPReturns, [
-    sliderMin,
-    sliderMax,
-  ]);
-  const [tableResults, setTableResults] = useState(initTableResults);
+  const [tableResults, setTableResults] = useState(
+    generateResults(sortedSPReturns, [sliderMin, sliderMax])
+  );
   const handleSliderChange = (event, newValue) => {
     setSliderRange(newValue);
     setTableResults(generateResults(sortedSPReturns, newValue));
@@ -65,7 +62,6 @@ function App() {
         alignSelf="flex-start"
         alignContent="flex-start"
       >
-        {/* <Typography variant="h5">Filter S&P 500 Returns By Year</Typography> */}
         <Box m={5} display="flex" width="80%">
           <Slider
             value={sliderRange}
