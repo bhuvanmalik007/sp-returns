@@ -46,7 +46,9 @@ function App() {
       <HideOnScroll>
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="h6">S&P 500 Total Returns</Typography>
+            <Typography variant="h6">
+              S&P 500 Total Returns by Year 💹
+            </Typography>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
