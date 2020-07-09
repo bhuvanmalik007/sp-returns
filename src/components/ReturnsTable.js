@@ -12,6 +12,9 @@ const useStyles = makeStyles(() => ({
   table: {
     minWidth: 20,
   },
+  container: {
+    maxHeight: "calc(100vh - 100px)",
+  },
 }));
 
 const StyledTableCell = withStyles((theme) => ({
@@ -45,7 +48,7 @@ export default function ReturnsTable({ tableResults, headerArray }) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.container}>
       <Table className={classes.table} aria-label="simple table" stickyHeader>
         <TableHead>
           <StyledTableRow hover>
