@@ -10,6 +10,7 @@ import data from "./data/history.json";
 import ReturnsTable from "./components/ReturnsTable";
 import { generateResults, sortAscending } from "./helperFns";
 import columns from "./constants";
+import Emoji from "./components/Emoji";
 
 const useStyles = makeStyles(({ transitions }) => ({
   root: {
@@ -47,7 +48,7 @@ function App() {
         <AppBar position="fixed" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6">
-              S&P 500 Total Returns by Year 💹
+              S&P 500 Total Returns by Year <Emoji symbol="💹" />
             </Typography>
           </Toolbar>
         </AppBar>
