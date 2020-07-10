@@ -1,7 +1,8 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
+import PropTypes from "prop-types";
 
-export default function Header({ children }) {
+export default function BodyBox({ children }) {
   return (
     <Box
       display="flex"
@@ -18,3 +19,7 @@ export default function Header({ children }) {
     </Box>
   );
 }
+
+BodyBox.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+};

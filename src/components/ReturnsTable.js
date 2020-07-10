@@ -1,3 +1,4 @@
+import React from "react";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -6,7 +7,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import React from "react";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(() => ({
   table: {
@@ -76,3 +77,8 @@ export default function ReturnsTable({ tableResults, headerArray }) {
     </TableContainer>
   );
 }
+
+ReturnsTable.propTypes = {
+  tableResults: PropTypes.arrayOf(PropTypes.object).isRequired,
+  headerArray: PropTypes.arrayOf(PropTypes.object).isRequired,
+};

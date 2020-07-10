@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   yearControl: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-export default function Header({ children }) {
+export default function SliderAreaBox({ children }) {
   const classes = useStyles();
 
   return (
@@ -32,3 +33,7 @@ export default function Header({ children }) {
     </Box>
   );
 }
+
+SliderAreaBox.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
+};

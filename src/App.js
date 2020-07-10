@@ -68,6 +68,16 @@ function App() {
             '"Segoe UI Symbol"',
           ].join(","),
         },
+        overrides: {
+          MuiSlider: {
+            thumb: {
+              color: "black",
+            },
+            track: {
+              color: "grey",
+            },
+          },
+        },
       }),
     [darkMode]
   );

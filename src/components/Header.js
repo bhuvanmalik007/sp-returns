@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import NightsStayIcon from "@material-ui/icons/NightsStay";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 import Emoji from "./Emoji";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
@@ -58,3 +59,8 @@ export default function Header({ darkMode, setDarkMode }) {
     </AppBar>
   );
 }
+
+Header.propTypes = {
+  darkMode: PropTypes.bool.isRequired,
+  setDarkMode: PropTypes.func.isRequired,
+};
